@@ -1,0 +1,44 @@
+
+#setting random seed
+
+seed: 42
+
+datamodule:
+  _target_ : 
+
+
+model:
+  _target_: src.models.base_module.BaseModule
+  net:
+    _target_: src.models.resnet18.resnet_model
+    num_classes: 3
+  optimizer: 
+    _target_ : torch.optim.Adam
+    lr : 1.0e-3
+    weight_decay: 0.0
+  loss_fn :
+    _target_ : torch.nn.CrossEntropyLoss
+  
+
+logger:
+  mlflow:
+    _target_ : pytorch_lightning.loggers.MLFlowLogger
+    experiment_name: "otitis_exp"
+    run_name: "run1"
+
+    tracking_uri : ""
+
+trainer:
+  _target_: pytorch_lightning.Trainer
+  max_epochs : 100
+  gpus : 1
+  deterministic: True
+  callbacks : ${callbacks}
+  logger : $logger.mlflow}
+
+
+
+
+
+
+
