@@ -4,7 +4,14 @@
 seed: 42
 
 datamodule:
-  _target_ : 
+  _target_ : src.datamodules.datamodule.BaseDataModule
+  batch_size : 32
+  train_dataset:
+    _target_ : src.dataset.dataset.otitis_dataset
+    dataset_dir : ""
+    classes: ["Normal" : ["Normal"], "AOM" : ["AOM"], "COM" : ["COM"]]
+    img_size: 224
+    transforms : None
 
 
 model:
@@ -34,7 +41,7 @@ trainer:
   gpus : 1
   deterministic: True
   callbacks : ${callbacks}
-  logger : $logger.mlflow}
+  logger : ${logger.mlflow}
 
 
 
