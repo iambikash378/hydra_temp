@@ -6,11 +6,11 @@ class BaseModule(pl.LightningModule):
             self,
             net: nn.Module,
             optimizer : torch.optim.Optimizer,
-            scheduler : torch.optim.lr_scheduler.LRScheduler = None,
             loss_fn,
+            scheduler : torch.optim.lr_scheduler.LRScheduler = None,
             threshold: float = 0.5,
             multi_class : bool = False ,
-            log_outputs : bool = True
+            log_outputs : bool = True,
     ):
         super().__init__()
 
