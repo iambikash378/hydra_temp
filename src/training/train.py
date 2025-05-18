@@ -6,7 +6,7 @@ import logging
 from pytorch_lightning.loggers import CSVLogger, TensorBoardLogger, MLFlowLogger
 
 
-log = logging.logger(__name__)
+log = logging.Logger(__name__)
 
 def train(cfg: DictConfig):
 
